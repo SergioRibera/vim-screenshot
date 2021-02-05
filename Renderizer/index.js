@@ -3,6 +3,7 @@ const sh = require('shelljs');
 const open = require('open');
 const fs = require('fs');
 const args = process.argv.slice(2);
+const data = require('../vimshot-config.json');
 
 function generateJsFile(pathJsonFile, pathOutput){
     fs.readFile(pathJsonFile, "utf-8", (err, data) => {
@@ -39,7 +40,7 @@ async function main() {
                     await page.waitForSelector('#my-node');
                     try {
                         const url = await page.$('#my-node')
-                        const contentBuffer = await url.screenshot({ omitBackground: true });
+                        const contentBuffer = await url.screenshot({ omitBackground: data.backgroundTransparent });
                         var d = new Date();
                         var date = "_" + adjustNum(d.getDay()) + adjustNum(d.getMonth()) + d.getFullYear() + "_" + adjustNum(d.getHours()) + adjustNum(d.getMinutes()) + adjustNum(d.getSeconds());
                         fs.writeFileSync(args[2]+"/Vim-Screenshot"+date+".png", contentBuffer, 'base64');
