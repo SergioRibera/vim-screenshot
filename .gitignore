@@ -2,6 +2,6 @@ compile_bin.sh
 Renderizer/node_modules
 Renderizer/package-lock.json
 bin/
-vim-screenshot.json
+vimshot-config.json
 ***/data.js
 extra/plug/index.html
