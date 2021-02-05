@@ -1,0 +1,13 @@
+{
+    "name": "vim-screenshot-puppeter",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "author": "SergioRibera",
+    "license": "ISC",
+    "dependencies": {
+        "open": "^7.4.0",
+        "puppeteer": "^7.0.1",
+        "shelljs": "^0.8.4"
+    }
+}

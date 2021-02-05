@@ -1,7 +1,7 @@
 compile_bin.sh
 Renderizer/node_modules
-Renderizer/package_lock.json
+Renderizer/package-lock.json
 bin/
-***.json
+vim-screenshot.json
 ***/data.js
 extra/plug/index.html
