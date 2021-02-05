@@ -4,7 +4,6 @@ This is a simple plugin that allows you to take snapshots to snippets of your co
 To be able to use this extension, it is essential that you have the following installed:
 - NodeJs
 - npm
-<br>
 ## Installation
 Plug:
 ``` Vim
