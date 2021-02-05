@@ -40,7 +40,7 @@ async function main() {
                     await page.waitForSelector('#my-node');
                     try {
                         const url = await page.$('#my-node')
-                        const contentBuffer = await url.screenshot({ omitBackground: data.backgroundTransparent });
+                        const contentBuffer = await url.screenshot({ omitBackground: (data.backgroundTransparent == 'true') });
                         var d = new Date();
                         var date = "_" + adjustNum(d.getDay()) + adjustNum(d.getMonth()) + d.getFullYear() + "_" + adjustNum(d.getHours()) + adjustNum(d.getMinutes()) + adjustNum(d.getSeconds());
                         fs.writeFileSync(args[2]+"/Vim-Screenshot"+date+".png", contentBuffer, 'base64');
