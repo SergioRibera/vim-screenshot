@@ -1,0 +1,113 @@
+:root{
+    --bg-color: transparent;
+    --pre-box-shadow: 0px 0px 30px 0px #000;
+    --pre-border-radius: 5px;
+    --con-margin-top: 40px;
+    --con-margin-left: 40px;
+    --con-margin-bottom: 40px;
+    --con-margin-right: 40px;
+    --line-show: block;
+}
+::-webkit-scrollbar {
+    width: 5px;
+    height: 0px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+*, body {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    text-rendering: optimizeLegibility;
+    transition: .3s;
+}
+body { background-color: var(--bg-color); }
+.code-container{
+    display: grid;
+    max-width: 100vw;
+}
+.header{
+    /*
+     *flex-flow: row wrap;
+     */
+    display: flex;
+    margin: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #2e3d54;
+    color: white;
+    justify-self: center;
+    width: 80%;
+    justify-content: space-evenly;
+}
+.custom-option{
+    justify-content: space-between;
+    display: flex;
+    margin: 5px;
+}
+button{
+    position: relative;
+    top: 40%;
+    width: 20px;
+    height: 20px;
+    border: none;
+    color: gray !important;
+    fill: gray !important;
+}
+button svg, button svg path{ transition: .05s; }
+button:hover{
+    cursor: pointer;
+    color: limegreen !important;
+    fill: limegreen !important;
+}
+.container {
+    display: inline-grid;
+    margin-top: var(--con-margin-top);
+    margin-left: var(--con-margin-left);
+    margin-bottom: var(--con-margin-bottom);
+    margin-right: var(--con-margin-right);
+    justify-self: center;
+    width: 80%;
+}
+select, input[type=number]{
+    border: none;
+    color: white !important;
+    max-width: 150px;
+    margin-left: 10px;
+    border-bottom: 1px solid white;
+}
+input { border: none; margin-left: 10px; }
+option{ color: black; }
+pre {
+    box-shadow: var(--pre-box-shadow);
+}
+/* for block of numbers */
+.hljs-ln-numbers {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    text-align: center;
+    color: #858585;
+    vertical-align: top;
+    padding-right: 5px !important;
+    display: var(--line-show);
+}
+.hljs-ln-code {
+    padding-left: 10px;
+}
+pre, code{
+    overflow: hidden;
+    white-space: pre-wrap;
+    border-radius: var(--pre-border-radius);
+}

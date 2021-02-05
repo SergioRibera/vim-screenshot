@@ -1,0 +1,7 @@
+compile_bin.sh
+Renderizer/node_modules
+Renderizer/package_lock.json
+bin/
+***.json
+***/data.js
+extra/plug/index.html

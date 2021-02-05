@@ -1,0 +1,30 @@
+*, body {
+    margin: 0;
+    padding: 0;
+}
+#code-container{
+    display: inline-flex;
+    max-width: 100%;
+}
+.container {
+    /*
+     *display: inline-grid;
+     */
+    display: flex;
+    max-width: 100%;
+}
+.hljs-ln-numbers {
+    user-select: none;
+    text-align: center;
+    color: #858585;
+    vertical-align: top;
+    padding-right: 5px !important;
+}
+.hljs-ln-code {
+    padding-left: 10px;
+}
+pre, code{
+    overflow: hidden;
+    white-space: pre-wrap !important;
+    word-break: break-all;
+}
