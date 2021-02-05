@@ -103,7 +103,9 @@ endfunction
 function! s:convertJsonToJs()
     silent execute "!".s:get_excecute_path() shellescape("genjs") shellescape(s:configFilePath()) shellescape(s:plugin_path.'extra/plug/data.js')
 endfunction
-
+function! s:npmInstall()
+    execute "!cd ". shellescape(s:plugin_path . 'Renderizer') . ' && npm install --save'
+endfunction
 function! s:verifyFile()
     if !isdirectory(g:vimShotSavePath)
         call mkdir(g:vimShotSavePath, "p")
@@ -164,4 +166,7 @@ if !exists(":OpenScreenshotSettings")
 endif
 if !exists(":OpenScreenShotVisualPreview")
     command OpenScreenShotVisualPreview :call OpenPreviewPage()
+endif
+if !exists(":InstallScreenshotBin")
+    command InstallScreenshotBin :call s:npmInstall()
 endif
