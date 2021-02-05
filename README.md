@@ -7,7 +7,7 @@ To be able to use this extension, it is essential that you have the following in
 ## Installation
 Plug:
 ``` Vim
-Plug 'SergioRibera/vim-screenshot', { 'do', './install.sh' }
+Plug 'SergioRibera/vim-screenshot', { 'do', ':InstallScreenshotBin' }
 ```
 The other way would be cloning the repository.
 ## Instructions
