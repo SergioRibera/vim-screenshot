@@ -21,7 +21,7 @@ async function main() {
     if (args.length <= 0) throw new Error("This Application require arguments");
     console.dir(args);
     switch(args[0]){
-        case "genfs":
+        case "genjs":
             generateJsFile(args[1], args[2]);
             break;
         case "screenshot":

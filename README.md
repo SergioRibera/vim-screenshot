@@ -1,20 +1,21 @@
 # Vim-Screenshot
 This is a simple plugin that allows you to take snapshots to snippets of your code with a highly customizable format, besides being beautiful, it includes 70+ of pre-set themes.
+## Requirements
+To be able to use this extension, it is essential that you have the following installed:
+- NodeJs
+- npm
+<br>
 ## Installation
 Plug:
 ``` Vim
-Plug 'SergioRibera/vim-screenshot', { 'do', './install.sh OS' }
+Plug 'SergioRibera/vim-screenshot', { 'do', 'cd Renderizer && npm install' }
 ```
-to install you must replace version by the latest version shown in the [releases](https://github.com/SergioRibera/vim-screenshot/releases) page and also replace OS by your operating system, having the options of "linux" and "mac". <br>
 The other way would be cloning the repository.
 ## Instructions
 ### Variables
 |       Name        |       Default Value      |                                                     Description                                                     |
 |-------------------|:------------------------:|:-------------------------------------------------------------------------------------------------------------------:|
 | g:vimShotSavePath | ~/Images/code-screenshot |                      This is the path to the directory where all generated images will be saved                     |
-| g:vimShotTimeOut  |           3000           | (For the moment) Indicates the time in milliseconds to keep open the tab of the binary that renders the screenshot. |
-| g:vimShotWidth    |           1024           |                        Refers to the width of the window in which the html will be redirected.                      |
-| g:vimShotHeight   |            768           |                       Refers to the height of the window in which the html will be redirected.                      |
 ### Functions
 | Name                         |                                                                                                                                                        Description                                                                                                                                                       |
 |------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -33,9 +34,6 @@ The other way would be cloning the repository.
 ![Graphical Explication File Create](https://raw.githubusercontent.com/SergioRibera/vim-screenshot/main/doc/Vim-Screenshot_112021_182353.png)
 <br/><br/>
 ![Graphical Explication File Create](https://raw.githubusercontent.com/SergioRibera/vim-screenshot/main/doc/Vim-Screenshot_112021_182518.png)
-### Notices
-This project is under development and open to ideas or suggestions, I plan to release more customizations for the screenshot system.
-If you know of any other method to render the html contained in this project, you can do your tests in the "develop" branch and then add the changes to the main
 
 ### **Please report all bugs and problems**
 Thanks for install this tool, for see more visit [my web](https://sergioribera.com) (Very soon I will add an app store)
