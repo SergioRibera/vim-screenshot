@@ -3,9 +3,7 @@
 window.onload = function () {
   var nodeSC = document.getElementById('my-node'),
       containerNode = nodeSC.children.item(0),
-      preNode = containerNode.children.item(0),
-      codeNode = preNode.children.item(0);
-  var root = document.documentElement.style;
+      preNode = containerNode.children.item(0);
   document.querySelector("link[title=\"".concat(data.theme, "\"]")).removeAttribute("disabled");
   var shadow, bgColor, borderRadius, margins;
 
@@ -14,7 +12,7 @@ window.onload = function () {
   } else shadow = "none";
 
   if (data.hasOwnProperty("backgroundTransparent")) {
-    if (data.backgroundTransparent) bgColor = "transparent";else {
+    if (data.backgroundTransparent == true) bgColor = "transparent";else {
       if (data.hasOwnProperty("backgroundColor")) bgColor = data.backgroundColor;else bgColor = "#c6d1fb";
     }
   }
