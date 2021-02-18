@@ -7,7 +7,7 @@ To be able to use this extension, it is essential that you have the following in
 ## Installation
 Plug:
 ``` Vim
-Plug 'SergioRibera/vim-screenshot', { 'do', 'npm install --prefix Renderizer' }
+Plug 'SergioRibera/vim-screenshot', { 'do': 'npm install --prefix Renderizer' }
 ```
 The other way would be cloning the repository.
 ## Instructions
