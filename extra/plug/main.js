@@ -1,9 +1,19 @@
 "use strict";
 
+function encodeHtml(str){
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
+
 window.onload = function () {
   var nodeSC = document.getElementById('my-node'),
       containerNode = nodeSC.children.item(0),
-      preNode = containerNode.children.item(0);
+      preNode = containerNode.children.item(0),
+        preCode = preNode.children.item(0);
+    preCode.innerHTML = encodeHtml(preCode.innerHTML)
   document.querySelector("link[title=\"".concat(data.theme, "\"]")).removeAttribute("disabled");
   var shadow, bgColor, borderRadius, margins;
 

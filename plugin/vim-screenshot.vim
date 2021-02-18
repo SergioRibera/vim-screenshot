@@ -87,14 +87,6 @@ endfunction
 function! s:separator()
   return !exists('+shellslash') || &shellslash ? '/' : '\'
 endfunction
-function! s:encodeHtml(value)
-    "let l:value = substitute(a:value, "&", "&amp;", "")
-    "let l:value = substitute(l:value, "<", "&lt;", "")
-    "let l:value = substitute(l:value, ">", "&gt;", "")
-    "let l:value = substitute(l:value, '"', "&quot;", "")
-    "return substitute(a:value, "'", "&#039;", "")
-    return a:value
-endfunction
 function! s:configFilePath()
     let l:filePath = s:separator() . "vimshot-config.json"
     return fnamemodify(s:vimShotConfigPath . l:filePath, ':p')
@@ -139,11 +131,11 @@ function! TakeScreenShot()
     if len(l:content) > 1
         for line in readfile(s:plugin_path . 'extra/plug/template.html')
             if stridx(line, "#CODE#") >= 0
-                call add(l:contentHtml, '<pre id="code-container"><code>' . s:encodeHtml(l:content[0]) )
+                call add(l:contentHtml, '<pre id="code-container"><code>' . l:content[0])
                 for i in l:content[1:len(l:content)-2]
-                    call add(l:contentHtml, s:encodeHtml(i) )
+                    call add(l:contentHtml, i)
                 endfor
-                call add(l:contentHtml, s:encodeHtml(l:content[len(l:content)-1]) . '</code></pre>')
+                call add(l:contentHtml, l:content[len(l:content)-1] . '</code></pre>')
             else
                 call add(l:contentHtml, line)
             endif
@@ -154,7 +146,7 @@ function! TakeScreenShot()
             if stridx(line, "#CODE#") >= 0
                 call add(l:contentHtml, '<pre id="code-container"><code>')
                 for i in l:content
-                    call add(l:contentHtml, s:encodeHtml(i) )
+                    call add(l:contentHtml, i)
                 endfor
                 call add(l:contentHtml, '</code></pre>')
             else
