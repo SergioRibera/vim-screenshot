@@ -92,7 +92,8 @@ function! s:encodeHtml(value)
     "let l:value = substitute(l:value, "<", "&lt;", "")
     "let l:value = substitute(l:value, ">", "&gt;", "")
     "let l:value = substitute(l:value, '"', "&quot;", "")
-    return substitute(a:value, "'", "&#039;", "")
+    "return substitute(a:value, "'", "&#039;", "")
+    return a:value
 endfunction
 function! s:configFilePath()
     let l:filePath = s:separator() . "vimshot-config.json"
