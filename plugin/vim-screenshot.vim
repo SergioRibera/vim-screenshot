@@ -88,9 +88,11 @@ function! s:separator()
   return !exists('+shellslash') || &shellslash ? '/' : '\'
 endfunction
 function! s:encodeHtml(value)
-    let l:value = substitute(a:value, "<", "&lt;", "")
-    let l:value = substitute(l:value, ">", "&gt;", "")
-    return l:value
+    "let l:value = substitute(a:value, "&", "&amp;", "")
+    "let l:value = substitute(l:value, "<", "&lt;", "")
+    "let l:value = substitute(l:value, ">", "&gt;", "")
+    "let l:value = substitute(l:value, '"', "&quot;", "")
+    return substitute(a:value, "'", "&#039;", "")
 endfunction
 function! s:configFilePath()
     let l:filePath = s:separator() . "vimshot-config.json"
@@ -133,17 +135,23 @@ endfunction
 function! TakeScreenShot()
     let l:content = s:get_visual_selection()
     let l:contentHtml = []
-    for line in readfile(s:plugin_path . 'extra/plug/template.html')
-        if stridx(line, "#CODE#") >= 0
-            call add(l:contentHtml, '<pre id="code-container"><code>' . s:encodeHtml(l:content[0]) )
-            for i in l:content[1:len(l:content)-2]
-                call add(l:contentHtml, s:encodeHtml(i) )
-            endfor
-            call add(l:contentHtml, s:encodeHtml(l:content[len(l:content)-1]) . '</code></pre>')
-        else
-            call add(l:contentHtml, line)
-        endif
-    endfor
+    if len(l:content) > 1
+        for line in readfile(s:plugin_path . 'extra/plug/template.html')
+            if stridx(line, "#CODE#") >= 0
+                call add(l:contentHtml, '<pre id="code-container"><code>' . s:encodeHtml(l:content[0]) )
+                for i in l:content[1:len(l:content)-2]
+                    call add(l:contentHtml, s:encodeHtml(i) )
+                endfor
+                call add(l:contentHtml, s:encodeHtml(l:content[len(l:content)-1]) . '</code></pre>')
+            else
+                call add(l:contentHtml, line)
+            endif
+        endfor
+    else
+        call add(l:contentHtml, '<pre id="code-container"><code>')
+        call add(l:content)
+        call add(l:contentHtml, '</code></pre>')
+    endif
     if writefile(l:contentHtml, s:plugin_path.'extra/plug/index.html', "b") == 0
         silent execute "!".s:get_excecute_path() shellescape("screenshot") shellescape(s:plugin_path.'extra/plug/index.html') shellescape(g:vimShotSavePath)
     else
