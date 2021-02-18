@@ -42,26 +42,26 @@ let s:configDefault = {
 function! s:ToJson(input)
     let json = ''
     if type(a:input) == type({})
-        let json .= "{"
+        let json .= "{\n"
         let di =  0
         for key in keys(a:input)
             let di += 1
-            let json .= '"'.escape(key, '"').'":'
+            let json .= '               "'.escape(key, '"').'":'
             let json .= s:ToJson(a:input[key])
-            let json .= di<len(a:input)? "," : ""
+            let json .= di<len(a:input)? ",\n" : "\n"
         endfor
-        let json .= "}"
+        let json .= "}\n"
     elseif type(a:input) == type([])
-        let json .= "["
+        let json .= "[\n"
         let li = 0
         for e in a:input
             let li += 1
             let json .= s:ToJson(e)
             if li<len(a:input)
-                let json .= ","
+                let json .= ",\n"
             endif
         endfor
-        let json .=  "]"
+        let json .=  "]\n"
 
     else
         if type(a:input) == type(v:t_bool) || type(a:input) == type(v:t_number)
@@ -110,6 +110,8 @@ function! s:verifyFile()
     if !filereadable(s:configFilePath())
         execute 'tabnew ' . s:configFilePath()
         put! = s:ToJson(s:configDefault)
+        set filetype=json
+        w!
         echomsg "Please Save and restart Vim"
         return
     endif
@@ -123,11 +125,11 @@ function! TakeScreenShot()
     let l:contentHtml = []
     for line in readfile(s:plugin_path . 'extra/plug/template.html')
         if stridx(line, "#CODE#") >= 0
-            call add(l:contentHtml, '<pre id="code-container"><code>' . l:content[0])
+            call add(l:contentHtml, '<pre id="code-container"><code>' . s:encodeHtml(l:content[0]) )
             for i in l:content[1:len(l:content)-2]
-                call add(l:contentHtml, i)
+                call add(l:contentHtml, s:encodeHtml(i) )
             endfor
-            call add(l:contentHtml, l:content[len(l:content)-1] . '</code></pre>')
+            call add(l:contentHtml, s:encodeHtml(l:content[len(l:content)-1]) . '</code></pre>')
         else
             call add(l:contentHtml, line)
         endif
