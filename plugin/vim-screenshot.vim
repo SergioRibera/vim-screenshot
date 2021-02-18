@@ -101,7 +101,17 @@ function! s:get_excecute_path()
 endfunction
 
 function! s:convertJsonToJs()
-    silent execute "!".s:get_excecute_path() shellescape("genjs") shellescape(s:configFilePath()) shellescape(s:plugin_path.'extra/plug/data.js')
+    let l:content = []
+    call add(l:content, 'const data=')
+    for line in readfile(s:configFilePath())
+        call add(l:content, line)
+    endfor
+    if writefile([], s:plugin_path.'extra/plug/data.js') == 0
+        if writefile(l:content, s:plugin_path.'extra/plug/data.js') != 0
+            echoerr "Can't generate correct files"
+        endif
+    endif
+    "silent execute "!".s:get_excecute_path() shellescape("genjs") shellescape(s:configFilePath()) shellescape(s:plugin_path.'extra/plug/data.js')
 endfunction
 function! s:verifyFile()
     if !isdirectory(g:vimShotSavePath)
@@ -154,8 +164,8 @@ endfunction
 " ____________________________ Commands ____________________________
 "
 
-autocmd vimenter * call s:verifyFile()
-autocmd BufWritePost vimshot-config.json call s:convertJsonToJs()
+autocmd! vimenter * call s:verifyFile()
+autocmd! BufWritePost vimshot-config.json call s:convertJsonToJs()
 
 if !exists(":TakeScreenShot")
     command -range=% -bar TakeScreenShot :call TakeScreenShot()
