@@ -85,7 +85,7 @@ function! s:get_visual_selection()
     return lines
 endfunction
 function! s:separator()
-  return !exists('+shellslash') || &shellslash ? '/' : '\\'
+  return !exists('+shellslash') || &shellslash ? '/' : '\'
 endfunction
 function! s:encodeHtml(value)
     let l:value = substitute(a:value, "<", "&lt;", "")
