@@ -149,7 +149,7 @@ function! TakeScreenShot()
         endfor
     else
         call add(l:contentHtml, '<pre id="code-container"><code>')
-        call add(l:content)
+        call add(l:contentHtml, l:content)
         call add(l:contentHtml, '</code></pre>')
     endif
     if writefile(l:contentHtml, s:plugin_path.'extra/plug/index.html', "b") == 0
