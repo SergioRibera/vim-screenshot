@@ -149,7 +149,17 @@ function! TakeScreenShot()
         endfor
     else
         call add(l:contentHtml, '<pre id="code-container"><code>')
-        call add(l:contentHtml, l:content)
+        for line in readfile(s:plugin_path . 'extra/plug/template.html')
+            if stridx(line, "#CODE#") >= 0
+                call add(l:contentHtml, '<pre id="code-container"><code>')
+                for i in l:content
+                    call add(l:contentHtml, s:encodeHtml(i) )
+                endfor
+                call add(l:contentHtml, '</code></pre>')
+            else
+                call add(l:contentHtml, line)
+            endif
+        endfor
         call add(l:contentHtml, '</code></pre>')
     endif
     if writefile(l:contentHtml, s:plugin_path.'extra/plug/index.html', "b") == 0

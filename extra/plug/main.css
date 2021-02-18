@@ -3,7 +3,7 @@
     padding: 0;
 }
 #code-container{
-    display: inline-flex;
+    display: inline;
     max-width: 100%;
 }
 .container {
