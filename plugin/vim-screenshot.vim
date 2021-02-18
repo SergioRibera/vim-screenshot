@@ -82,6 +82,7 @@ function! s:get_visual_selection()
     let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
     let lines[0] = lines[0][column_start - 1:]
     "return join(lines, "\x0a")
+    "let lines = map(lines, 'substitute(v:val, "<", "[& +-]#x3C;", "g")')
     return lines
 endfunction
 function! s:separator()
