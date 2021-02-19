@@ -2,6 +2,7 @@ const puppeteer = require('puppeteer');
 const sh = require('shelljs');
 const open = require('open');
 const fs = require('fs');
+const readline = require('readline');
 const args = process.argv.slice(2);
 const data = require('../vimshot-config.json');
 
@@ -14,8 +15,6 @@ function generateJsFile(pathJsonFile, pathOutput){
     });
 }
 
-String.prototype.replaceAllTxt = function replaceAll(search, replace) { return this.split(search).join(replace); }
-
 function encodeHtml(rawFile){
     const data = fs.readFileSync(rawFile, 'utf-8');
     const lines = data.split(/\r?\n/);
@@ -23,7 +22,7 @@ function encodeHtml(rawFile){
 
     lines.forEach((line) => {
         if(i >= 115 && i <= lines.length - 9){
-            let newline = line.replaceAllTxt("&", "&amp;").replaceAllTxt("<", "&lt;").replaceAllTxt(">", "&gt;") + ((i < lines.length - 2) ? "\n" : "");
+            let newline = line.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;") + ((i < lines.length - 2) ? "\n" : "");
             newContent += newline;
             console.log(newline);
         } else
