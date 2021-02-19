@@ -54,20 +54,23 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
     let shadow, color, margins;
     if(data.hasOwnProperty("shadowEnable")) {
-        if(data.shadowEnable) shadow = "0px 0px 30px 0px #000";
+        if(data.shadowEnable == true) shadow = "0px 0px 30px 0px #000";
         else shadow = "none";
-    } else shadow = "none";
+        showShadow.checked = (data.shadowEnable == true);
+    } else { shadow = "none"; showShadow.checked = false }
     if(data.hasOwnProperty("backgroundTransparent")) {
-        if(data.backgroundTransparent) color = "transparent";
+        if(data.backgroundTransparent == true) color = "transparent";
         else {
             if(data.hasOwnProperty("backgroundColor"))
                 color = data.backgroundColor;
             else
                 color = "#c6d1fb";
         }
+        bgTransparent.checked = (data.backgroundTransparent == true);
     }
     if(data.hasOwnProperty("theme")){
         document.querySelector(`link[title="${data.theme}"]`).removeAttribute("disabled");
+        currentTheme = data.theme;
     }
 
     if(!data.hasOwnProperty("borderRadius"))
@@ -96,8 +99,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
     titles.forEach(title => {
         let option = document.createElement("option");
         option.value = option.innerText = title.title;
-        if(title.title == currentTheme)
+        if(title.title == currentTheme){
             option.selected = true;
+        }
         themeSelector.appendChild(option);
     });
     themeSelector.addEventListener('change', e => {
@@ -152,13 +156,12 @@ document.addEventListener('DOMContentLoaded', ()=> {
         root.setProperty('--pre-border-radius', e.target.value + "px");
     });
     hljs.highlightBlock(codeContainer);
-    if(data.hasOwnProperty("showLineNumbers"))
+    if(data.hasOwnProperty("showLineNumbers")){
         if(data.showLineNumbers)
             hljs.lineNumbersBlock(codeContainer);
+        showLine.checked = (data.showLineNumbers == true);
+    }
     bgColor.value = data.backgroundColor;
-    bgTransparent.checked = data.backgroundTransparent;
-    showLine.checked = data.showLineNumbers;
-    showShadow.checked = data.shadowEnable;
     marginTop.value = data.margins.top;
     marginLeft.value = data.margins.left;
     marginBottom.value = data.margins.bottom;

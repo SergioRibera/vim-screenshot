@@ -3,5 +3,4 @@ Renderizer/node_modules
 Renderizer/package-lock.json
 bin/
 vimshot-config.json
-***/data.js
 extra/plug/index.html
