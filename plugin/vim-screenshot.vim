@@ -158,7 +158,7 @@ function! TakeScreenShot()
         endfor
     endif
     if writefile(l:contentHtml, s:plugin_path.'extra/plug/index.html', "b") == 0
-        execute "!".s:get_excecute_path() shellescape("screenshot") shellescape(s:plugin_path.'extra/plug/index.html') shellescape(g:vimShotSavePath)
+        silent execute "!".s:get_excecute_path() shellescape("screenshot") shellescape(s:plugin_path.'extra/plug/index.html') shellescape(g:vimShotSavePath)
     else
         echoerr "Could can't process ScreenShot"
     endif
