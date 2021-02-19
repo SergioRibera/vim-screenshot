@@ -81,8 +81,6 @@ function! s:get_visual_selection()
     endif
     let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
     let lines[0] = lines[0][column_start - 1:]
-    "return join(lines, "\x0a")
-    "let lines = map(lines, 'substitute(v:val, "<", "[& +-]#x3C;", "g")')
     return lines
 endfunction
 function! s:separator()
@@ -107,7 +105,6 @@ function! s:convertJsonToJs()
             echoerr "Can't generate correct files"
         endif
     endif
-    "silent execute "!".s:get_excecute_path() shellescape("genjs") shellescape(s:configFilePath()) shellescape(s:plugin_path.'extra/plug/data.js')
 endfunction
 function! s:verifyFile()
     if !isdirectory(g:vimShotSavePath)
@@ -132,32 +129,36 @@ function! TakeScreenShot()
     if len(l:content) > 1
         for line in readfile(s:plugin_path . 'extra/plug/template.html')
             if stridx(line, "#CODE#") >= 0
-                call add(l:contentHtml, '<pre id="code-container"><code>' . l:content[0])
+                call add(l:contentHtml, '<pre id="code-container">')
+                call add(l:contentHtml, '<code>')
+                call add(l:contentHtml, l:content[0])
                 for i in l:content[1:len(l:content)-2]
                     call add(l:contentHtml, i)
                 endfor
-                call add(l:contentHtml, l:content[len(l:content)-1] . '</code></pre>')
+                call add(l:contentHtml, l:content[len(l:content)-1])
+                call add(l:contentHtml, '</code>')
+                call add(l:contentHtml, '</pre>')
             else
                 call add(l:contentHtml, line)
             endif
         endfor
     else
-        call add(l:contentHtml, '<pre id="code-container"><code>')
         for line in readfile(s:plugin_path . 'extra/plug/template.html')
             if stridx(line, "#CODE#") >= 0
-                call add(l:contentHtml, '<pre id="code-container"><code>')
+                call add(l:contentHtml, '<pre id="code-container">')
+                call add(l:contentHtml, '<code>')
                 for i in l:content
                     call add(l:contentHtml, i)
                 endfor
-                call add(l:contentHtml, '</code></pre>')
+                call add(l:contentHtml, '</code>')
+                call add(l:contentHtml, '</pre>')
             else
                 call add(l:contentHtml, line)
             endif
         endfor
-        call add(l:contentHtml, '</code></pre>')
     endif
     if writefile(l:contentHtml, s:plugin_path.'extra/plug/index.html', "b") == 0
-        silent execute "!".s:get_excecute_path() shellescape("screenshot") shellescape(s:plugin_path.'extra/plug/index.html') shellescape(g:vimShotSavePath)
+        execute "!".s:get_excecute_path() shellescape("screenshot") shellescape(s:plugin_path.'extra/plug/index.html') shellescape(g:vimShotSavePath)
     else
         echoerr "Could can't process ScreenShot"
     endif

@@ -2,6 +2,7 @@ const puppeteer = require('puppeteer');
 const sh = require('shelljs');
 const open = require('open');
 const fs = require('fs');
+const readline = require('readline');
 const args = process.argv.slice(2);
 const data = require('../vimshot-config.json');
 
@@ -14,8 +15,26 @@ function generateJsFile(pathJsonFile, pathOutput){
     });
 }
 
+function encodeHtml(rawFile){
+    const data = fs.readFileSync(rawFile, 'utf-8');
+    const lines = data.split(/\r?\n/);
+    let newContent = "", i = 0;
+
+    lines.forEach((line) => {
+        if(i >= 115 && i <= lines.length - 9){
+            let newline = line.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;") + ((i < lines.length - 2) ? "\n" : "");
+            newContent += newline;
+            console.log(newline);
+        } else
+            newContent += line + "\n";
+        i++;
+    });
+
+    fs.writeFile(rawFile, newContent, err => console.log);
+}
+
 var adjustNum = function adjustNum(value) {
-  return value < 10 ? "0" + value : value;
+    return value < 10 ? "0" + value : value;
 };
 
 async function main() {
@@ -27,6 +46,7 @@ async function main() {
             break;
         case "screenshot":
             sh.mkdir("-p", args[2]);
+            encodeHtml(args[1]);
             puppeteer.launch({
                 args: [
                     '--no-sandbox',
