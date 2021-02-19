@@ -3,6 +3,11 @@
   color: #17E726;
 }
 
+.hljs-doctag
+{
+    color: #BDBBBB;
+}
+
 
 .hljs-variable,
 .hljs-template-variable,
