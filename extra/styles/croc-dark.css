@@ -2,6 +2,11 @@
 {
  	color: #6A6161;
 }
+
+.hljs-quote
+{
+ 	color: #11F044;  
+}          
 .hljs-meta,.hljs-meta-keyword,.hljs-meta-string 
 {
   	color: red;
