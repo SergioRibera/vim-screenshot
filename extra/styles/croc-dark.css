@@ -2,9 +2,14 @@
 {
  	color: #6A6161;
 }
-.hljs-quote 
+
+.hljs-quote
 {
-  	color: #17E726;
+ 	color: #11F044;  
+}          
+.hljs-meta,.hljs-meta-keyword,.hljs-meta-string 
+{
+  	color: red;
 }
 .hljs-variable,
 .hljs-template-variable,
@@ -14,7 +19,10 @@
 }
 
 
-.hljs-attribute,
+.hljs-attribute
+{
+ color: #F08711;
+}
 .hljs-regexp,
 .hljs-link,
 .hljs-selector-id,
@@ -27,8 +35,11 @@
 {
   	color:#8F44B8;
 }
-.hljs-meta,
-.hljs-literal,
+
+.hljs-literal
+{
+    	color:Fuchsia;
+}
 .hljs-type,
 .hljs-params 
 {
