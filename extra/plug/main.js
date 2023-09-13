@@ -8,11 +8,11 @@ window.onload = function () {
     var shadow, bgColor, borderRadius, margins;
 
     if (data.hasOwnProperty("shadowEnable")) {
-        if (data.shadowEnable) shadow = "rgba(0, 0, 0, 0.55) 0px 20px 68px";else shadow = "none";
+        if (data.shadowEnable === "true") shadow = "rgba(0, 0, 0, 0.55) 0px 0px 20px";else shadow = "none";
     } else shadow = "none";
 
     if (data.hasOwnProperty("backgroundTransparent")) {
-        if (data.backgroundTransparent == true) bgColor = "transparent";else {
+        if (data.backgroundTransparent === "true") bgColor = "transparent";else {
             if (data.hasOwnProperty("backgroundColor")) bgColor = data.backgroundColor;else bgColor = "#c6d1fb";
         }
     }
