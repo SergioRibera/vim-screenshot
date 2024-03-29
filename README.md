@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> Deprecated in favor of [codeshot.nvim](https://github.com/SergioRibera/codeshot.nvim)
+
 # Vim-Screenshot
 This is a simple plugin that allows you to take snapshots to snippets of your code with a highly customizable format, besides being beautiful, it includes 70+ of pre-set themes.
 ## Requirements
